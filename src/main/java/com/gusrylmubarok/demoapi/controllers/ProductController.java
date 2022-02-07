@@ -1,10 +1,10 @@
 package com.gusrylmubarok.demoapi.controllers;
 
-
 import javax.validation.Valid;
 
 import com.gusrylmubarok.demoapi.dto.ResponseData;
 import com.gusrylmubarok.demoapi.models.entity.Product;
+import com.gusrylmubarok.demoapi.models.entity.Supplier;
 import com.gusrylmubarok.demoapi.services.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +76,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void removeOne(@PathVariable("id") Long id) {
         productService.deleteById(id);
+    }
+
+    @PostMapping("/{id}")
+    public void addSupplier(@RequestBody Supplier supplier, @PathVariabel("id") Long productId) {
+        productService.addSupplier(supplier, productId);
     }
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.gusrylmubarok.demoapi.models.entity.Product;
+import com.gusrylmubarok.demoapi.models.entity.Supplier;
 import com.gusrylmubarok.demoapi.models.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,15 @@ public class ProductService {
 
     public List<Product> findByName(String name) {
         return productRepository.findByNameContains(name);
+    }
+
+    public void addSupplier(Supplier supplier, Long productId) {
+        Product product = findOne(productId);
+        if(product == null) {
+            throw new RuntimeException("product with ID: " +productId+ " not found");
+        }
+
+        product.getSuppliers().add(supplier);
+        save(product);
     }
 }
