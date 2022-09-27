@@ -16,4 +16,7 @@ var app = builder.Build();
 app.UseStaticFiles();
 app.MapDefaultControllerRoute();
 
+// Data Seed
+SeedData.EnsurePopulated(app);
+
 app.Run();
